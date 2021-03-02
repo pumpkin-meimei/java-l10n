@@ -1,4 +1,4 @@
-# Java zdfbsfbLocalization demo
+# Java Localization demo
 
 ![CI build status badge](https://github.com/cletusw/java-l10n/workflows/Java%20build/badge.svg)
 
