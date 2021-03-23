@@ -1,12 +1,13 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
+import java.time.DateTimeException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -24,12 +26,15 @@ public class DatesAndNumbers extends SceneController {
     private static final int MAX_NUMBER_INPUT_LENGTH = 64;
 
     private final ResourceBundle messages = ResourceBundle.getBundle("datesAndNumbers", Locale.getDefault());
+    private final MessageFormat dateOffsetFromTodayFormatter = new MessageFormat(messages.getString("dateOffsetFromToday"));
     private final MessageFormat todayIsFormatter = new MessageFormat(messages.getString("todayIs"));
-    private final StringProperty currentLocalizedDateTime = new SimpleStringProperty("");
+    private final ObjectProperty<ZonedDateTime> currentZonedDateTime = new SimpleObjectProperty<>();
     private final Timeline timeline;
 
+    public TextField dateOffset;
     public TextField dividend;
     public TextField divisor;
+    public Text dateOffsetFromToday;
     public Label dividendFormatted;
     public Label divisorFormatted;
     public Label outputFormatted;
@@ -39,12 +44,7 @@ public class DatesAndNumbers extends SceneController {
         timeline = new Timeline(
             new KeyFrame(
                 Duration.ZERO,
-                event -> {
-                    currentLocalizedDateTime.set(
-                        ZonedDateTime.now()
-                            .format(
-                                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)));
-                }
+                event -> currentZonedDateTime.set(ZonedDateTime.now())
             ),
             new KeyFrame(Duration.millis(500))
         );
@@ -53,6 +53,7 @@ public class DatesAndNumbers extends SceneController {
 
     @FXML
     public void initialize() {
+        restrictToIntegers(dateOffset);
         restrictToIntegers(dividend);
         restrictToIntegers(divisor);
 
@@ -90,9 +91,41 @@ public class DatesAndNumbers extends SceneController {
 
         todayIsLabel.textProperty()
             .bind(Bindings.createStringBinding(
-                () -> todayIsFormatter.format(new Object[]{
-                    currentLocalizedDateTime.get()
-                }), currentLocalizedDateTime));
+                () -> {
+                    ZonedDateTime current = currentZonedDateTime.get();
+                    if (current == null) {
+                        return "";
+                    }
+
+                    return todayIsFormatter.format(new Object[]{
+                        current.format(
+                            DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG))
+                    });
+                }, currentZonedDateTime));
+
+        dateOffsetFromToday.textProperty()
+            .bind(Bindings.createStringBinding(
+                () -> {
+                    ZonedDateTime current = currentZonedDateTime.get();
+                    if (current == null) {
+                        return "";
+                    }
+
+                    BigDecimal days = dateOffset.textProperty().isEmpty().get() ?
+                        BigDecimal.ZERO :
+                        new BigDecimal(dateOffset.textProperty().get());
+
+                    try {
+                        return dateOffsetFromTodayFormatter.format(new Object[]{
+                            days,
+                            currentZonedDateTime.get().plusDays(days.longValue()).format(
+                                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG))
+                        });
+                    }
+                    catch (DateTimeException e) {
+                        return messages.getString("offsetOutsideAllowedRange");
+                    }
+                }, dateOffset.textProperty(), currentZonedDateTime));
 
         timeline.play();
     }
