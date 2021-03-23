@@ -39,3 +39,73 @@ task runInPortuguesePortugal {
     }
     finalizedBy 'run'
 }
+
+task runInSpanishMexico {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=es_MX']
+    }
+    finalizedBy 'run'
+}
+
+task runInSerbianSerbia {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=sr_SR']
+    }
+    finalizedBy 'run'
+}
+
+task runInSpanishPeru {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=es_PE']
+    }
+    finalizedBy 'run'
+}
+
+task runInChineseSimplified {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=zh_CN']
+    }
+    finalizedBy 'run'
+}
+
+task runInSpanishArgentina {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=es_AR']
+    }
+    finalizedBy 'run'
+}
+
+task runInArabicEgypt {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=ar_EG']
+    }
+    finalizedBy 'run'
+}
+
+task runInRussianRussia {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=ru_RU']
+    }
+    finalizedBy 'run'
+}
+
+task runInJapaneseJapan {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=ja_JP']
+    }
+    finalizedBy 'run'
+}
+
+task runInGermanGermany {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=de_DE']
+    }
+    finalizedBy 'run'
+}
+
+task runInNavajoUS {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=nv_US']
+    }
+    finalizedBy 'run'
+}
