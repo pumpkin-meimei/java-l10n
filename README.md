@@ -7,4 +7,3 @@ Double click `win-run.bat` (Windows) or `mac-linux-run.sh` (Mac/Linux) to build 
 Code is located in [app > src > main](app/src/main).
 
 If something's broken or you get errors about files in use, open the `scripts` folder, double click `win-clean.bat` (Windows) or `mac-linux-clean.sh` (Mac/Linux), then try again.
-dd
