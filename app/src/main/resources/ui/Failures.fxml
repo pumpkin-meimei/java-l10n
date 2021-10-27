@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import java.util.HashMap?>
+<BorderPane minWidth="500.0" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Failures">
+    <fx:define>
+        <HashMap fx:id="resources"
+                 you="%you"
+                 we="%we"
+                 they="%they"
+                 house="%house"
+                 dog="%dog"
+                 mother="%mother"
+                 father="%father"
+        />
+    </fx:define>
+    <center>
+        <VBox maxWidth="500.0" spacing="16.0">
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+            <children>
+                <HBox spacing="8.0">
+                    <children>
+                        <ChoiceBox prefWidth="150.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <fx:reference source="resources.you"/>
+                                    <fx:reference source="resources.we"/>
+                                    <fx:reference source="resources.they"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Label text="%postfixGoingToStore"/>
+                    </children>
+                </HBox>
+                <HBox spacing="8.0">
+                    <children>
+                        <Label text="%youHave"/>
+                        <ChoiceBox prefWidth="150.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="1"/>
+                                    <String fx:value="2"/>
+                                    <String fx:value="3"/>
+                                    <String fx:value="4"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Label text="%apples"/>
+                    </children>
+                </HBox>
+                <HBox spacing="8.0">
+                    <children>
+                        <Label text="%theyHaveATall"/>
+                        <ChoiceBox prefWidth="150.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <fx:reference source="resources.house"/>
+                                    <fx:reference source="resources.dog"/>
+                                    <fx:reference source="resources.mother"/>
+                                    <fx:reference source="resources.father"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                    </children>
+                    <Label text="."/>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button mnemonicParsing="false" onAction="#goBack" text="%goBack"/>
+            </buttons>
+            <padding>
+                <Insets right="8.0"/>
+            </padding>
+        </ButtonBar>
+    </bottom>
+</BorderPane>

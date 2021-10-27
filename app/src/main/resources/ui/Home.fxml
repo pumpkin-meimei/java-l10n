@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home">
     <center>
         <VBox alignment="TOP_CENTER" spacing="16.0">
            <children>
@@ -14,9 +14,6 @@
                      <TextField fx:id="fullNameTextField" />
                      <Button mnemonicParsing="false" onAction="#sayHello" text="%sayHello" />
                  </children>
-                 <padding>
-                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                 </padding>
               </HBox>
               <Slider fx:id="numberOfApples" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" maxWidth="200.0" minorTickCount="0" snapToTicks="true" />
               <Label fx:id="numberOfApplesLabel" />
@@ -29,7 +26,9 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
+            <Button mnemonicParsing="false" onAction="#goToFailures" text="%goToFailures" />
             <Button mnemonicParsing="false" onAction="#goToDetails" text="%goToDetails" />
+            <Button mnemonicParsing="false" onAction="#goToDatesAndNumbers" text="%goToDatesAndNumbers" />
         </buttons>
          <padding>
             <Insets right="8.0" />

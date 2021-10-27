@@ -59,4 +59,36 @@ public class LocalizationApp extends Application {
             primaryStage.getScene().setRoot(detailsView);
         }
     }
+
+    public void goToDatesAndNumbers() throws IOException {
+        ResourceBundle messages = ResourceBundle.getBundle("datesAndNumbers", Locale.getDefault());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/DatesAndNumbers.fxml"), messages);
+        Parent datesAndNumbersView = loader.load();
+        DatesAndNumbers datesAndNumbersController = loader.getController();
+        datesAndNumbersController.setAppController(this);
+        primaryStage.setTitle("Dates and numbers");
+
+        if (primaryStage.getScene() == null) {
+            primaryStage.setScene(new Scene(datesAndNumbersView));
+        }
+        else {
+            primaryStage.getScene().setRoot(datesAndNumbersView);
+        }
+    }
+
+    public void goToFailures() throws IOException {
+        ResourceBundle messages = ResourceBundle.getBundle("failures", Locale.getDefault());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/Failures.fxml"), messages);
+        Parent failuresView = loader.load();
+        Failures failuresController = loader.getController();
+        failuresController.setAppController(this);
+        primaryStage.setTitle("Failures");
+
+        if (primaryStage.getScene() == null) {
+            primaryStage.setScene(new Scene(failuresView));
+        }
+        else {
+            primaryStage.getScene().setRoot(failuresView);
+        }
+    }
 }
