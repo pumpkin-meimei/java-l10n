@@ -26,6 +26,13 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
+task runInEnglishUK {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=en_UK']
+    }
+    finalizedBy 'run'
+}
+
 task runInPortuguese {
     doFirst {
         applicationDefaultJvmArgs = ['-Duser.language=pt']
@@ -54,16 +61,23 @@ task runInSerbianSerbia {
     finalizedBy 'run'
 }
 
-task runInSpanishPeru {
+task runInChineseSimplified {
     doFirst {
-        applicationDefaultJvmArgs = ['-Duser.language=es_PE']
+        applicationDefaultJvmArgs = ['-Duser.language=zh_CN']
     }
     finalizedBy 'run'
 }
 
-task runInChineseSimplified {
+task runInChineseTraditional {
     doFirst {
-        applicationDefaultJvmArgs = ['-Duser.language=zh_CN']
+        applicationDefaultJvmArgs = ['-Duser.language=zh_TW']
+    }
+    finalizedBy 'run'
+}
+
+task runInSpanishPeru {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=es_PE']
     }
     finalizedBy 'run'
 }
@@ -78,6 +92,13 @@ task runInSpanishArgentina {
 task runInArabicEgypt {
     doFirst {
         applicationDefaultJvmArgs = ['-Duser.language=ar_EG']
+    }
+    finalizedBy 'run'
+}
+
+task runInArabicJordan {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=ar_JO']
     }
     finalizedBy 'run'
 }
@@ -106,6 +127,20 @@ task runInGermanGermany {
 task runInNavajoUS {
     doFirst {
         applicationDefaultJvmArgs = ['-Duser.language=nv_US']
+    }
+    finalizedBy 'run'
+}
+
+task runInSwedishSweden {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=sv_SE']
+    }
+    finalizedBy 'run'
+}
+
+task runInGreekGreece {
+    doFirst {
+        applicationDefaultJvmArgs = ['-Duser.language=el_GR']
     }
     finalizedBy 'run'
 }
