@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Details">
+    <center>
+        <VBox spacing="8.0">
+           <children>
+              <Label alignment="CENTER" text="%title" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+              <TextFlow prefHeight="36.0" prefWidth="384.0">
+                 <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%details">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                 </children></TextFlow>
+            <TextFlow layoutX="18.0" layoutY="44.0" prefHeight="30.0" prefWidth="333.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%mandela">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+           </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+        </VBox>
+    </center>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="131.0" text="%chooseNext" />
+            <Button layoutX="327.0" layoutY="17.0" mnemonicParsing="false" onAction="#goBack" text="%goBack" />
+        </buttons>
+         <padding>
+            <Insets right="8.0" />
+         </padding>
+      </ButtonBar>
+   </bottom>
+</BorderPane>
